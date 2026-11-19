@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import json
+import os
 import time
 from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -29,13 +31,28 @@ app = FastAPI(
     ),
 )
 
+# Browsers need CORS only when the site and the API are on different origins
+# (split hosting). The packaged app serves both from one origin, so a hosted
+# deployment can list its own origins in MEDMAP_CORS_ORIGINS (comma-separated).
+# Unset, any origin may call the API, as in local development.
+CORS_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get("MEDMAP_CORS_ORIGINS", "*").split(",")
+    if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=CORS_ORIGINS,
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# Map responses are large GeoJSON (up to ~1 MB for one state) and hosts such as
+# Cloud Run send them uncompressed, so compress anything over 1 KB for browsers
+# that accept gzip.
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 API = "/api/v1"
 

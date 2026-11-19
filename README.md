@@ -9,6 +9,10 @@ also suggests the right size of hospital and the departments it should offer.
 You explore the results on an interactive map and choose which trade-offs
 matter most.
 
+**Try it live: <https://medmap-985509284497.us-central1.run.app>** (hosted on
+Google Cloud Run; after a quiet spell, the first visit takes a few seconds to
+wake it up. Setup: [DEPLOYMENT.md](DEPLOYMENT.md#google-cloud-run-the-hosted-demo)).
+
 ![Whiteboard planning sketch for MedMap](docs/images/whiteboard-plan.png)
 
 *Our first whiteboard sketch: public data goes into a ranking algorithm, and
