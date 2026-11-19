@@ -1,4 +1,4 @@
-import { fmt, points } from "../../lib/format.js";
+import { fmt, oneDecimal, points } from "../../lib/format.js";
 import { scoreBreakdown, topReasons } from "../../lib/weights.js";
 
 // How each hospital's position was found (Stage 3 ETL; see
@@ -70,6 +70,8 @@ export function CandidatePopup({ site, weights }) {
   const rows = scoreBreakdown(site, weights);
   const reasons = topReasons(rows);
   const flags = [site.in_mua && "MUA/P", site.in_hpsa && "HPSA"].filter(Boolean).join(", ") || "None";
+  const minutesSaved = site.population_weighted_mean_minutes_saved;
+  const nearestMiles = site.nearest_existing_hospital_estimated_drive_miles ?? site.nearest_hospital_mi;
   return (
     <div className="popup">
       <h3>#{site.rank}: {site.county} County, {site.state}</h3>
@@ -91,8 +93,8 @@ export function CandidatePopup({ site, weights }) {
       </div>
       <dl>
         <dt>New 30-min access</dt><dd>{fmt(site.newly_accessible_population_30min ?? site.uncovered_population)} people</dd>
-        <dt>Time saved</dt><dd>{site.population_weighted_mean_minutes_saved ?? "—"} min average</dd>
-        <dt>Nearest hospital</dt><dd>{site.nearest_existing_hospital_estimated_drive_miles ?? site.nearest_hospital_mi ?? "—"} mi</dd>
+        <dt>Time saved</dt><dd>{minutesSaved != null ? oneDecimal(minutesSaved) : "—"} min average</dd>
+        <dt>Nearest hospital</dt><dd>{nearestMiles != null ? oneDecimal(nearestMiles) : "—"} mi</dd>
         <dt>Shortage areas</dt><dd>{flags}</dd>
         <dt>Density</dt><dd>{fmt(site.density_per_sq_mi)} / sq mi{site.density_imputed ? " (estimated)" : ""}</dd>
         <dt>Tract population</dt><dd>{fmt(site.tract_population)}</dd>

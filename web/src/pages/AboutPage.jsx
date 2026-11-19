@@ -1,10 +1,21 @@
 import { GITHUB_URL } from "../config.js";
 
-// TODO: add real names, roles and links. GitHub usernames come from the commit history.
 const TEAM = [
-  { name: "Roman Wambugu", role: "Role: TODO" },
-  { name: "orlemley", role: "Name and role: TODO", link: "https://github.com/orlemley" },
-  { name: "clnichols", role: "Name, role and GitHub link: TODO" },
+  {
+    name: "Roman Wambugu",
+    role: "Built the interactive map and other major frontend features, and led our pitch.",
+    link: "https://github.com/romanwambugu",
+  },
+  {
+    name: "Oliver Lemley",
+    role: "Built the data pipeline, the API and the scoring algorithm.",
+    link: "https://github.com/orlemley",
+  },
+  {
+    name: "Colin Nichols",
+    role: "Set up Docker so MedMap runs the same on any machine, and fixed the site-clustering bug the first time it hit.",
+    link: "https://github.com/clnichols",
+  },
 ];
 
 const BUILT_WITH = [
@@ -23,7 +34,9 @@ export default function AboutPage() {
       <main className="page">
         <p className="eyebrow">About</p>
         <h1>The team</h1>
-        <p className="lead">MedMap was built at TigerHacks26.</p>
+        <p className="lead">
+          MedMap was built in 36 hours at TigerHacks 2026, where it won 1st place in the Developer Track.
+        </p>
 
         <div className="card-grid">
           {TEAM.map((m) => (

@@ -13,6 +13,24 @@ matter most.
 Google Cloud Run; after a quiet spell, the first visit takes a few seconds to
 wake it up. Setup: [DEPLOYMENT.md](DEPLOYMENT.md#google-cloud-run-the-hosted-demo)).
 
+**Team:** built in 36 hours at TigerHacks 2026 by Oliver Lemley
+([@orlemley](https://github.com/orlemley)), Colin Nichols
+([@clnichols](https://github.com/clnichols)) and me, Roman Wambugu
+([@romanwambugu](https://github.com/romanwambugu)). It won 1st place in the
+Developer Track ([Devpost](https://devpost.com/software/medmap-z5tyv7)). I built
+the interactive map and other major frontend features and led our pitch. Oliver
+built the data pipeline, the API and the scoring algorithm. Colin set up Docker
+so MedMap runs the same on any machine, and fixed the bug that piled
+recommended sites into clusters the first time it hit. We used Claude Code and
+Codex as coding assistants.
+
+**This repository** is my continued work after the hackathon. The code exactly
+as we submitted it is the
+[Original Hackathon Prototype](https://github.com/romanwambugu/medmap/releases/tag/hackathon-submission)
+release, and the team's repository is
+[orlemley/medmap](https://github.com/orlemley/medmap). The Cloud Run hosting was
+added in November 2026 with Claude Code.
+
 ![Whiteboard planning sketch for MedMap](docs/images/whiteboard-plan.png)
 
 *Our first whiteboard sketch: public data goes into a ranking algorithm, and

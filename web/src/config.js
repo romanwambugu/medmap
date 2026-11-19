@@ -22,4 +22,6 @@ export const SATELLITE = {
     'target="_blank" rel="noopener noreferrer">USGS The National Map</a>',
 };
 
-export const GITHUB_URL = "https://github.com/orlemley/hackathon-237858";
+// This repository: the hackathon prototype plus later work. The team's original
+// repository is linked from the README and the "Original Hackathon Prototype" release.
+export const GITHUB_URL = "https://github.com/romanwambugu/medmap";

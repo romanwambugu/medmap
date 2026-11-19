@@ -1,2 +1,0 @@
-One of my teammates is wishing to use docker to containerize the websever. Make the python web server work on 
-a container. This teammate has docker installed and WSL installed.

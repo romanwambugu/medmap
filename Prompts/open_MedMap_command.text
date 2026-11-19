@@ -1,1 +1,0 @@
-python -m uvicorn optimal_hospital_placer.api.main:app --app-dir src --port 8000

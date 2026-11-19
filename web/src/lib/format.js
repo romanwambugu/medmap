@@ -2,6 +2,9 @@ import { MARKER_COLORS } from "./constants.js";
 
 export const fmt = (n) => Number(n).toLocaleString("en-US");
 
+/** A measured amount (minutes, miles) with at most one decimal, e.g. 20.4. */
+export const oneDecimal = (n) => Number(n).toLocaleString("en-US", { maximumFractionDigits: 1 });
+
 /** A 0-1 score from the API as a whole number of points out of 100. */
 export const points = (score) => Math.round(Number(score) * 100);
 
